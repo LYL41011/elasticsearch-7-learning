@@ -1,0 +1,17 @@
+.DS_Store
+.pampas/
+
+**/.idea/*
+**/target/*
+
+.idea
+*.iml
+*.class
+
+.project
+**/.settings/*
+
+
+.classpath
+.factorypath
+.vscode/
