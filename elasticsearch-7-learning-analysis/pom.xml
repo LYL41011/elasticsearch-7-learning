@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>elasticsearch-7-learning-queryqsl</artifactId>
+    <artifactId>elasticsearch-7-learning-analysis</artifactId>
 
 
 </project>

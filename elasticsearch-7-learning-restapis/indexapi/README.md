@@ -5,6 +5,9 @@
 Create index
 ```
 1、显示指定mapping
+- Mapping Parameters https://www.elastic.co/guide/en/elasticsearch/reference/7.1/mapping-params.html
+Mapping中的字段一旦设定后，禁止直接修改。因为倒排索引生成后不允许直接修改。需要重新建立新的索引，做reindex操作。
+
 注意keyword和text的区别 text类型会分词 而keyword不会 一个字段是可以同时设置这两种
 "ignore_above":10 长度超过ignore_above设置的字符串将不被索引或存储
 date:format属性 通过format设置日期格式，常见的可以设置成年月日时分秒、年月日及毫秒值三种格式。
@@ -45,6 +48,8 @@ PUT /test
 }
 
 2、动态mapping 即直接插入一条数据 es会自动创建索引并且自动匹配字段的映射
+- https://www.elastic.co/guide/en/elasticsearch/reference/7.1/dynamic-mapping.html
+
 PUT test1/_doc/1
 {
   "user": "GB",
@@ -130,7 +135,7 @@ Elasticsearch的别名，就类似数据库的视图。别名不仅仅可以关�
 参考文档:https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-aliases.html
 https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-add-alias.html#alias-adding
 
-Add index alias：创建或更新索引别名,可以再创建index的时候就指定，也可以后续再指定
+- Add index alias：创建或更新索引别名,可以再创建index的时候就指定，也可以后续再指定
 ```
 PUT /test/_alias/test_alias
 GET /test_alias/_mapping/
@@ -180,16 +185,16 @@ PUT /users/_alias/user_12
     }
 }
 ```
-Delete index alias
+- Delete index alias
 `DELETE /test/_alias/test_alias`
-Get index alias
+- Get index alias
 ```
 GET /_alias/
 GET /_alias/test_alias
 ```
-Index alias exists
+- Index alias exists
 `HEAD /_alias/test_alias`
-Update index alias
+- Update index alias
 ```
 POST /_aliases
 {
@@ -202,7 +207,7 @@ POST /_aliases
 
 ## Index settings
 index配置详细参考:https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings
-Update index settings 实时生效
+- Update index settings 实时生效
 ```
 PUT /twitter/_settings
 {
@@ -225,7 +230,7 @@ GET /_analyze
 
 ## Index templates
 当新建一个 Elasticsearch 索引时，自动匹配模板，完成索引的基础部分搭建。
-Put index template
+- Put index template
 ```
 #创建两个索引模板
 PUT _template/template_default
@@ -272,26 +277,26 @@ GET testtemplate/_mapping
 GET lyltemplate/_mapping
 ```
 
-Delete index template
+- Delete index template
 `DELETE /_template/template_1`
 
-Get index template
+- Get index template
 `GET /_template/template_default`
 
-Index template exists
+- Index template exists
 `HEAD /_template/template_1`
 
 ## Monitoring
-Index stats 返回索引的统计信息
+- Index stats 返回索引的统计信息
 `GET /test/_stats`
 
-Index segments 返回关于索引分片中的Lucene索引段信息
+- Index segments 返回关于索引分片中的Lucene索引段信息
 `GET /test/_segments`
 
-Index recovery 获取正在进行和完成的分片恢复信息
+- Index recovery 获取正在进行和完成的分片恢复信息
 `GET /test/_recovery`
 
-Index shard stores 返回索引中replica shard的存储信息
+- Index shard stores 返回索引中replica shard的存储信息
 `GET /test/_shard_stores`
 
 ## Status management
